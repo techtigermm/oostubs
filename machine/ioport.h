@@ -1,22 +1,24 @@
+/* $Id: io_port.h 956 2008-10-19 22:24:23Z hsc $ */
+
 #ifndef __io_port_include__
 #define __io_port_include__
 #include "object/uint_templates.h"
-
 /*****************************************************************************/
-/* Operating-System Construction                                             */
+/* Betriebssysteme                                                           */
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              I O _ P O R T                                */
 /*                                                                           */
 /*---------------------------------------------------------------------------*/
-/* This class allows accesses to x86's I/O address space. This special       */
-/* address space can only be accessed with the machine instructions 'in' and */
-/* 'out'. An IO_Port object is bound to a specific I/O address (called       */
-/* "port") at instantiation time and can then be used for byte- or word-wise */
-/* input or output operations.                                               */
+/* Diese Klasse dient dem Zugriff auf die Ein-/Ausgabe Ports des PCs. Beim   */
+/* PC gibt es einen gesonderten I/O-Adressraum, der nur mittels der Maschi-  */
+/* neninstruktionen 'in' und 'out' angesprochen werden kann. Ein IO_Port-    */
+/* Objekt wird beim Erstellen an eine Adresse des I/O-Adressraums gebunden   */
+/* und kann dann fuer byte- oder wortweise Ein- oder Ausgaben verwendet wer- */
+/* den.                                                                      */
 /*****************************************************************************/
 
-/* USED FUNCTIONS */
+/* BENUTZTE FUNKTIONEN */
 
 extern "C" void outb  (uint16_t port, uint8_t value);
 extern "C" void outw (uint16_t port, uint16_t value);
@@ -25,13 +27,14 @@ extern "C" uint8_t inb   (uint16_t port);
 extern "C" uint16_t inw  (uint16_t port);
 extern "C" uint32_t inl (uint16_t port);
 
-/* CLASS DEFINITION */
+/* KLASSENDEFINITION */
 
-class IO_Port {
-	// copying is allowed
+class IO_Port
+ {
+      // Kopieren erlaubt!
 
-	// address in I/O address space ("port")
-	uint16_t address;
+      // Adresse im I/O-Adressraum
+      uint16_t address;
    public:
       IO_Port (uint16_t a) : address (a) {};
 

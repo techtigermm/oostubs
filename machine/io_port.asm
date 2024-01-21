@@ -1,28 +1,31 @@
+; $Id: io_port.asm 8485 2017-03-27 11:50:06Z friesel $
+
 ;*****************************************************************************
-;* Operating-System Construction                                             *
+;* Betriebssysteme                                                           *
 ;*---------------------------------------------------------------------------*
 ;*                                                                           *
 ;*                             I O _ P O R T                                 *
 ;*                                                                           *
 ;*---------------------------------------------------------------------------*
-;* The functions defined here encapsulate the machine instructions 'in' and  *
-;* 'out' for class IO_Port.                                                  *
+;* Die hier definierten Funktionen stellen die Maschinebefehle 'in' und      *
+;* 'out' fuer die Klasse IO_Port zur Verfuegung.                             *
 ;*****************************************************************************
 
-; EXPORTED FUNCTIONS
+; EXPORTIERTE FUNKTIONEN
 
 [GLOBAL outb]
 [GLOBAL outw]
+[GLOBAL outl]
 [GLOBAL inb]
 [GLOBAL inw]
-
-; FUNCTION IMPLEMENTATIONS
+[GLOBAL inl]
+; IMPLEMENTIERUNG DER FUNKTIONEN
 
 [SECTION .text]
-
-; OUTB: Byte-wise output via an I/O port.
+	
+; OUTB: Byteweise Ausgabe eines Wertes ueber einen I/O-Port.
 ;
-;       C prototype: void outb (int port, int value);
+;       C-Prototyp: void outb (int port, int value);
 
 outb:
 	push   rbp
@@ -33,9 +36,9 @@ outb:
 	pop    rbp
 	ret
 
-; OUTW: Word-wise output via an I/O port.
+; OUTW: Wortweise Ausgabe eines Wertes ueber einen I/O-Port.
 ;
-;       C prototype: void outw (int port, int value);
+;       C-Prototyp: void outw (int port, int value);
 
 outw:
 	push   rbp
@@ -46,26 +49,55 @@ outw:
 	pop    rbp
 	ret
 
-; INB: Byte-wise input via an I/O port.
+; OUTL: Longweise Ausgabe eines Wertes ueber einen I/O-Port.
 ;
-;      C prototype: unsigned char inb (int port);
+;       C-Prototyp: void outl (int port, int value);
+
+outl:
+	push   rbp
+	mov    rbp, rsp
+	mov    rdx, rdi
+	mov    rax, rsi
+	out    dx, eax
+	pop    rbp
+	ret
+
+
+; INB: Byteweises Einlesen eines Wertes ueber einen I/O-Port.
+;
+;      C-Prototyp: int inb (int port);
 
 inb:
 	push   rbp
 	mov    rbp, rsp
 	mov    rdx, rdi
+	mov    rax, rsi
 	in     al, dx
 	pop    rbp
 	ret
 
-; INW: Word-wise input via an I/O port.
+; INW: Wortweises Einlesen eines Wertes ueber einen I/O-Port.
 ;
-;      C prototype: unsigned short inw (int port);
+;      C-Prototyp: int inw (int port);
 
 inw:
 	push   rbp
 	mov    rbp, rsp
 	mov    rdx, rdi
+	mov    rax, rsi
 	in     ax, dx
+	pop    rbp
+	ret
+
+; INL: Longweises Einlesen eines Wertes ueber einen I/O-Port.
+;
+;      C-Prototyp: int inl (int port);
+
+inl:
+	push   rbp
+	mov    rbp, rsp
+	mov    rdx, rdi
+	mov    rax, rsi
+	in     eax, dx
 	pop    rbp
 	ret

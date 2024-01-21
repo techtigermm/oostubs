@@ -36,7 +36,7 @@ long loop2_stack[1024];
 
 Idle idle(idle_stack + sizeof(idle_stack));
 Application app(app_stack + sizeof(app_stack), 0);
-Application app2(app2_stack + sizeof(app2_stack), 1);
+//Application app2(app2_stack + sizeof(app2_stack), 1);
 Loop loop1(loop1_stack + sizeof(loop1_stack), 2, 10);
 Loop loop2(loop2_stack + sizeof(loop2_stack), 3, 20);
 
@@ -46,10 +46,10 @@ int main()
 	keyboard.plugin();
 
 	organizer.ready(app);
-	organizer.ready(app2);
+	//organizer.ready(app2);
 
-	organizer.ready(loop1);
-	organizer.ready(loop2);
+	//organizer.ready(loop1);
+	//organizer.ready(loop2);
 
 	guard.enter();
 	watch.windup();
