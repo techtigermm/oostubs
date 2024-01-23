@@ -141,7 +141,7 @@ void Application::commandParser(char* buffer){
         kout << "---------------------------" << endl;
         kout << "tr - Taschenrechner; Moegliche Eingaben: tr x operand y " << endl;
         kout << "Operanden: +, -, *, / ; Trennung von Operand und Zahl mit Leerzeichen " << endl;
-        kout << "x,y <= ? (maximale Groeße von Integern ist compilerabhängig)" << endl; //maximal vom Programm richtig verarbeitbare Größe eingegebener Zahl
+        kout << "x,y <= ? (maximale Groesse von Integern ist compilerabhaengig)" << endl; //maximal vom Programm richtig verarbeitbare Größe eingegebener Zahl
         kout << "---------------------------" << endl;
         kout << "check - Information ueber PCI-Geraetekonfiguration" << endl;
         kout << "Eingabe: check <Bus> <Slot> <Funktion> <Offset>" << endl;
