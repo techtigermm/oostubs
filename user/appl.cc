@@ -141,9 +141,8 @@ void Application::commandParser(char* buffer){
         kout << "---------------------------" << endl;
         kout << "tr - Taschenrechner; Moegliche Eingaben: tr x operand y " << endl;
         kout << "Operanden: +, -, *, / ; Trennung von Operand und Zahl mit Leerzeichen " << endl;
-        kout << "x,y <= ? (maximale Groesse von Integern ist compilerabhaengig)" << endl; //maximal vom Programm richtig verarbeitbare Größe eingegebener Zahl
         kout << "---------------------------" << endl;
-        kout << "check - Information ueber PCI-Geraetekonfiguration" << endl;
+        kout << "checkpci - Information ueber PCI-Geraetekonfiguration" << endl;
         kout << "Eingabe: check <Bus> <Slot> <Funktion> <Offset>" << endl;
         kout << "---------------------------" << endl;
         //kout << "cioa - ?" << endl; Was macht das?
@@ -190,7 +189,7 @@ void Application::commandParser(char* buffer){
             kout.flush();
         }
     }
-    else if (CHECK) {
+    else if (CHECKPCI) {
         uint32_t fullDeviceID;
         if(argc != 5) {
             kout << "Ausfuehren mit: check <Bus> <Slot> <Funktion> <Offset>" << endl;
