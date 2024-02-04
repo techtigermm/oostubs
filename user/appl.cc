@@ -39,7 +39,7 @@ extern Guarded_Semaphore semaphore;
 /*Defines*/
 #define BACKSPACE 8
 
-// long stack1[1024];
+ long stack1[1024];
 
 
 //Kommandozeilenprogramm
@@ -49,22 +49,22 @@ void Application::action()
     argc = 0;
     bufferpos = 0;
     kout.getpos(x,y);
-    // Loop loop1(stack1 + sizeof(stack1), 1);
+   Loop loop1(stack1 + sizeof(stack1), 1, 1000000);
 
-    // organizer.ready(loop1);
-    // for (;;)
-    // {
-    //     {
-    //         Secure secure;
-    //         kout.setpos(15, 15);
-    //         kout << "test" << i++ << endl;
-    //         kout.flush();
-    //     }
-    // }
+     organizer.ready(loop1);
+     for (;;)
+     {
+         {
+             Secure secure;
+             kout.setpos(15, 15);
+             kout << "test" << i++ << endl;
+            kout.flush();
+         }
+ }
     //test
     for (;;) {
         
-        // semaphore.wait();
+        semaphore.wait();
         kout.setpos(0, row);
 
 //Source: https://github.com/LikeAnShadow/oostubs_changed/
@@ -141,10 +141,9 @@ void Application::commandParser(char* buffer){
         kout << "---------------------------" << endl;
         kout << "tr - Taschenrechner; Moegliche Eingaben: tr x operand y " << endl;
         kout << "Operanden: +, -, *, / ; Trennung von Operand und Zahl mit Leerzeichen " << endl;
-        kout << "x,y <= ? (maximale Groesse von Integern ist compilerabhaengig)" << endl; //maximal vom Programm richtig verarbeitbare Größe eingegebener Zahl
         kout << "---------------------------" << endl;
-        kout << "check - Information ueber PCI-Geraetekonfiguration" << endl;
-        kout << "Eingabe: check <Bus> <Slot> <Funktion> <Offset>" << endl;
+        kout << "checkpci - Information ueber PCI-Geraetekonfiguration" << endl;
+        kout << "Eingabe: checkpci <Bus> <Slot> <Funktion> <Offset>" << endl;
         kout << "---------------------------" << endl;
         //kout << "cioa - ?" << endl; Was macht das?
         //kout << "wioa - ?" << endl;
@@ -190,10 +189,10 @@ void Application::commandParser(char* buffer){
             kout.flush();
         }
     }
-    else if (CHECK) {
+    else if (CHECKPCI) {
         uint32_t fullDeviceID;
         if(argc != 5) {
-            kout << "Ausfuehren mit: check <Bus> <Slot> <Funktion> <Offset>" << endl;
+            kout << "Ausfuehren mit: checkpci <Bus> <Slot> <Funktion> <Offset>" << endl;
             kout.flush();
         } else {
         kout << "Vendor: " << hex << pciCheckVendor(atoi(argv[1]),atoi(argv[2]),atoi(argv[3])) << ", Device: " << pciCheckDevice(atoi(argv[1]), atoi(argv[2]), atoi(argv[3])) << dec << endl;

@@ -21,7 +21,7 @@ class Application : public Thread
 {
 private:
 	Application(const Application &copy); //Kopierkonstruktor: nimmt ein Objekt von Application als Parameter und erstellt ein neues Objekt , das eine Kopie des übergebenen Objekts ist
-	//int i = 0;
+	int i = 0;
 	void commandParser (char* buffer); //Interpretiert die Eingaben in der Shell
 	char buffer[BUFFERSIZE];
 	unsigned int argc; //argument count, wie in stdlib
