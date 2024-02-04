@@ -142,7 +142,7 @@ void Application::commandParser(char* buffer){
         kout << "tr - Taschenrechner; Moegliche Eingaben: tr x operand y " << endl;
         kout << "Operanden: +, -, *, / ; Trennung von Operand und Zahl mit Leerzeichen " << endl;
         kout << "---------------------------" << endl;
-        kout << "check - Information ueber PCI-Geraetekonfiguration" << endl;
+        kout << "checkpci - Information ueber PCI-Geraetekonfiguration" << endl;
         kout << "Eingabe: check <Bus> <Slot> <Funktion> <Offset>" << endl;
         kout << "---------------------------" << endl;
         //kout << "cioa - ?" << endl; Was macht das?
