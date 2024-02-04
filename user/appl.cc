@@ -143,7 +143,7 @@ void Application::commandParser(char* buffer){
         kout << "Operanden: +, -, *, / ; Trennung von Operand und Zahl mit Leerzeichen " << endl;
         kout << "---------------------------" << endl;
         kout << "checkpci - Information ueber PCI-Geraetekonfiguration" << endl;
-        kout << "Eingabe: check <Bus> <Slot> <Funktion> <Offset>" << endl;
+        kout << "Eingabe: checkpci <Bus> <Slot> <Funktion> <Offset>" << endl;
         kout << "---------------------------" << endl;
         //kout << "cioa - ?" << endl; Was macht das?
         //kout << "wioa - ?" << endl;
@@ -192,7 +192,7 @@ void Application::commandParser(char* buffer){
     else if (CHECKPCI) {
         uint32_t fullDeviceID;
         if(argc != 5) {
-            kout << "Ausfuehren mit: check <Bus> <Slot> <Funktion> <Offset>" << endl;
+            kout << "Ausfuehren mit: checkpci <Bus> <Slot> <Funktion> <Offset>" << endl;
             kout.flush();
         } else {
         kout << "Vendor: " << hex << pciCheckVendor(atoi(argv[1]),atoi(argv[2]),atoi(argv[3])) << ", Device: " << pciCheckDevice(atoi(argv[1]), atoi(argv[2]), atoi(argv[3])) << dec << endl;
